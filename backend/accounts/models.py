@@ -45,11 +45,40 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     return self.email
   
 
-  
 
+from django.db import models
+from django.core.exceptions import ValidationError
 
+class Task(models.Model):
+    FREQUENCY_CHOICES = [
+        ('none',    'None'),
+        ('daily',   'Every Day'),
+        ('weekly',  'Every Week'),
+        ('monthly', 'Every Month'),
+        ('yearly',  'Every Year'),
+    ]
 
+    title        = models.CharField(max_length=200)
+    category     = models.CharField(max_length=100, blank=True)
+    date         = models.DateField()
+    time_start   = models.TimeField(null=True, blank=True)
+    time_end     = models.TimeField(null=True, blank=True)
+    reminder     = models.BooleanField(default=False)
+    location     = models.CharField(max_length=250, blank=True)
+    notes        = models.TextField(blank=True)
+    frequency    = models.CharField(max_length=10, choices=FREQUENCY_CHOICES, default='none')
+    created_at   = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-date', 'time_start']
 
+    def clean(self):
+        if self.time_start and self.time_end and self.time_end <= self.time_start:
+            raise ValidationError({'time_end': 'Время окончания должно быть позднее времени начала.'})
 
-# Create your models here.
+    def __str__(self):
+        if self.time_start and self.time_end:
+            return f"{self.title} @ {self.date} {self.time_start}-{self.time_end}"
+        if self.time_start:
+            return f"{self.title} @ {self.date} {self.time_start}"
+        return f"{self.title} @ {self.date}"
