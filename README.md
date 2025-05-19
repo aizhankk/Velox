@@ -23,11 +23,12 @@
 
 ![Welcome and Auth](2.png)  
 ![3](3.png)
-![Name Personalization & Time Setup](1.png)  
-![Main Menu & Categories](./screenshots/main-menu-categories.png)  
-![Notifications](./screenshots/notifications.png)  
-![Calendar & Task Creation](./screenshots/calendar-task.png)  
-![Voice Input](./screenshots/voice-input.png)
+![Name Personalization & Time Setup](4.png)  
+![3](5.png)
+![3](6.png)
+![3](7.png)
+![3](8.png)
+![3](9.png)
 
 ---
 
