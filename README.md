@@ -21,8 +21,8 @@
 
 ## Screenshots
 
-![Welcome and Auth](./screenshots/welcome-auth.png)  
-![Name Personalization & Time Setup](./screenshots/onboarding-time-setup.png)  
+![Welcome and Auth](./backend/)  
+![Name Personalization & Time Setup](backend/Аннотация 2025-05-18 221943.png)  
 ![Main Menu & Categories](./screenshots/main-menu-categories.png)  
 ![Notifications](./screenshots/notifications.png)  
 ![Calendar & Task Creation](./screenshots/calendar-task.png)  
