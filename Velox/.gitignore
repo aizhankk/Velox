@@ -1,0 +1,8 @@
+**/__pycache__/
+/**/migrations/
+backend/venv/
+backend/db.sqlite3
+*.json
+accounts
+
+keys.py
