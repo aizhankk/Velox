@@ -7,7 +7,7 @@ urlpatterns = [
     re_path('auth/', include('djoser.urls')),
     re_path('auth/', include('djoser.urls.jwt')),
     path('admin/', admin.site.urls),
-    path('api/', include('accounts.urls')),
+    path('api/', include('app.urls')),
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
