@@ -1,16 +1,30 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from .models import Task, GoogleCredentials, UserAccount, Category
-from .serializers import CategorySerializer, UserTimeSerializer, TaskSerializer
+from django.views import View
+from django.http import JsonResponse, HttpResponseBadRequest
+from django.conf import settings
+from django.utils import timezone
+
+from rest_framework import viewsets, filters, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import viewsets, filters, status
-from rest_framework.permissions import IsAuthenticated
-import re, json
+
+from google_auth_oauthlib.flow import Flow
+from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+
+import requests
+import json
+import datetime
+import re
+
 from openai import OpenAI
-from django.conf import settings
+
+from .models import Task, GoogleCredentials, UserAccount, Category
+from .serializers import CategorySerializer, UserTimeSerializer, TaskSerializer
+
 
 class CategoryViewSet(viewsets.ModelViewSet):  
     queryset = Category.objects.all()
